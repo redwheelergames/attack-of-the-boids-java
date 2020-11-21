@@ -1,8 +1,9 @@
+import game_engine.*;
 
 class PlayerCollider extends Collider {
 
-    public PlayerCollider (Scene scene, GameObject parent, int radius) {
-        super(scene, parent, radius);
+    public PlayerCollider (GameObject parent, int radius) {
+        super(parent, radius);
     }
 
     public void onCollide(Collider collider) {
