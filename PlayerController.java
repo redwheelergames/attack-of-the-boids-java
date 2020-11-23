@@ -24,7 +24,7 @@ class PlayerController implements Component {
             this.parent.setForwardVector(newForward);
         }
 
-        if (this.parent.game.getKeyPressed("w")) {
+        if (this.parent.game.wasPressed.getKey("w")) {
             Vector2D forward = this.parent.getForwardVector();
             Vector2D delta = forward.scale(this.speed * deltaTime);
             this.parent.position = this.parent.position.add(delta);
