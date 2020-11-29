@@ -1,5 +1,6 @@
 import java.util.Random;
 import java.util.ArrayList;
+import java.io.File;
 import game_engine.*;
 
 class DemoGame {
@@ -14,35 +15,40 @@ class DemoGame {
         titleScreen.addTransition("start", mainScene);
 
         // Background game object
-        GameObject background = new GameObject(game, true, screenWidth/2, screenHeight/2, 2, 2, 90);
-        Sprite backgroundSprite = new Sprite(background, "background.png");
-        background.addComponent(backgroundSprite);
-        titleScreen.addGameObject(background);
-        mainScene.addGameObject(background);
+        GameObject backgroundTitle = new GameObject(game, titleScreen, true, screenWidth/2, screenHeight/2, 2, 2, 90);
+        Sprite backgroundTitleSprite = new Sprite(backgroundTitle, "background.png");
+        backgroundTitle.addComponent(backgroundTitleSprite);
+        titleScreen.addGameObject(backgroundTitle);
 
-        GameObject startObject = new GameObject(game, true, screenWidth/2 - 150, screenHeight/2, 0, 0, 90);
+        GameObject startObject = new GameObject(game, titleScreen, true, screenWidth/2 - 150, screenHeight/2, 0, 0, 90);
         Text startText = new Text(startObject, "PRESS SPACE TO START", 40, "VT323-Regular.ttf");
         Start start = new Start(game);
         startObject.addComponent(start);
         startObject.addComponent(startText);
         titleScreen.addGameObject(startObject);
 
-        GameObject title = new GameObject(game, true, screenWidth/2, screenHeight-200, 2, 2, 90);
+        GameObject title = new GameObject(game, titleScreen, true, screenWidth/2, screenHeight-200, 2, 2, 90);
         Sprite titleSprite = new Sprite(title, "title.png");
         title.addComponent(titleSprite);
         titleScreen.addGameObject(title);
 
+        // Background game object
+        GameObject background = new GameObject(game, mainScene, true, screenWidth/2, screenHeight/2, 2, 2, 90);
+        Sprite backgroundSprite = new Sprite(background, "background.png");
+        background.addComponent(backgroundSprite);
+        mainScene.addGameObject(background);
+
         // Instatiate 10 Asteroid game objects
         Random rng = new Random();
-        for (int i = 0; i < 10; i++) {
-            GameObject asteroid = new Asteroid(game, rng.nextInt(game.windowWidth), 
+        for (int i = 0; i < 25; i++) {
+            GameObject asteroid = new Asteroid(game, mainScene, rng.nextInt(game.windowWidth), 
                                                 rng.nextInt(game.windowHeight), 
                                                 rng.nextInt(360));
-            mainScene.addGameObject(asteroid);
+            mainScene.addGameObject(asteroid, "environment");
         }
 
         // Character game object
-        GameObject character = new GameObject(game, true, screenWidth/2, screenHeight/2, 2, 2, 90);
+        GameObject character = new GameObject(game, mainScene, true, screenWidth/2, screenHeight/2, 2, 2, 90);
         ArrayList<String> framePaths = new ArrayList<String> ();
         framePaths.add("player_idle_1.png");
         framePaths.add("player_idle_2.png");
@@ -54,10 +60,17 @@ class DemoGame {
         character.addComponent(characterSprite);
         character.addComponent(playerController);
         character.addComponent(playerCollider);
-        mainScene.addGameObject(character);
+        mainScene.addGameObject(character, "player");
+
+        // Instatiate 10 Boid game objects
+        for (int i = 0; i < 1000; i++) {
+            GameObject boid = new Boid(game, mainScene, rng.nextInt(game.windowWidth), 
+                                                rng.nextInt(game.windowHeight));
+            mainScene.addGameObject(boid, "boid");
+        }
 
         // FPS counter object
-        GameObject fpsCounter = new GameObject(game, false, 15, 20, 1, 1, 90);
+        GameObject fpsCounter = new GameObject(game, mainScene, true, 15, 20, 1, 1, 90);
         Text text = new Text(fpsCounter, "0", 30, "VT323-Regular.ttf");
         fpsCounter.addComponent(text);
         FPSCounter fps = new FPSCounter(fpsCounter);

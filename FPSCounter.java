@@ -9,7 +9,7 @@ public class FPSCounter implements Component {
 
     public FPSCounter(GameObject parent) {
         this.parent = parent;
-        this.textComponent = this.parent.getComponent(Text.class);
+        this.textComponent = this.parent.getComponents(Text.class).get(0);
     }
 
     public void update()  {
