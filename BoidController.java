@@ -25,7 +25,7 @@ public class BoidController implements Component {
             move = move.add(behavior.getMove().scale(behavior.getWeight()));
         }
         int angle = (int)this.parent.getForwardVector().angleSigned(move); // Signed angle between current forward vector and move
-        this.parent.rotation += Math.min(angle, this.maxRotation);
+        this.parent.rotation += Math.min(angle, this.maxRotation*deltaTime);
         Vector2D delta = this.parent.getForwardVector().scale(this.speed * deltaTime);
         this.parent.position = this.parent.position.add(delta);
     }

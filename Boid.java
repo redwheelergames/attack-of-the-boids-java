@@ -1,5 +1,4 @@
 import game_engine.*;
-import java.io.File;
 import java.util.ArrayList;
 
 class Boid extends GameObject {
@@ -11,7 +10,7 @@ class Boid extends GameObject {
         this.addComponent(followPlayer);
         BoidBehavior avoidance = new Avoidance(this, 1, 25);
         this.addComponent(avoidance);
-        BoidController boidController = new BoidController(this, 100, 5);
+        BoidController boidController = new BoidController(this, 125, 90);
         Collider collider = new BoidCollider(this, 5);
         this.addComponent(collider);
         this.addComponent(boidSprite);

@@ -24,5 +24,8 @@ class BoidCollider extends Collider {
             Vector2D translate = distanceVector.scale(scaleFactor);
             this.parent.position = this.parent.position.add(translate);
         }
+        else if (group == "player") {
+            this.parent.active = false;
+        }
     }
 }
