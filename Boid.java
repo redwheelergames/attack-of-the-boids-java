@@ -11,7 +11,9 @@ class Boid extends GameObject {
         BoidBehavior avoidance = new Avoidance(this, 1, 25);
         this.addComponent(avoidance);
         BoidController boidController = new BoidController(this, 125, 90);
-        Collider collider = new BoidCollider(this, 5);
+        BoidDeath boidDeath = new BoidDeath(this);
+        this.addComponent(boidDeath);
+        Collider collider = new BoidCollider(this, 5, boidDeath);
         this.addComponent(collider);
         this.addComponent(boidSprite);
         this.addComponent(boidController);

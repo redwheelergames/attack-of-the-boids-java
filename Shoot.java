@@ -14,7 +14,7 @@ class Shoot implements Component {
         for (int i = 0; i < 10; i++) {
             GameObject blaster = new Blaster(this.parent.game, this.parent.scene);
             ammo.add(blaster);
-            this.parent.scene.addGameObject(blaster);
+            this.parent.scene.addGameObject(blaster, "blaster");
         }
     }
 

@@ -3,12 +3,16 @@ import java.util.ArrayList;
 
 class BoidCollider extends Collider {
 
-    public BoidCollider (GameObject parent, int radius) {
+    BoidDeath death;
+
+    public BoidCollider (GameObject parent, int radius, BoidDeath death) {
         super(parent, radius);
         ArrayList<String> groupNames = new ArrayList<String> ();
         groupNames.add("player");
         groupNames.add("environment");
+        groupNames.add("blaster");
         this.groups = groupNames;
+        this.death = death;
     }
 
     public void onCollide(Collider collider, String group) {
@@ -24,8 +28,8 @@ class BoidCollider extends Collider {
             Vector2D translate = distanceVector.scale(scaleFactor);
             this.parent.position = this.parent.position.add(translate);
         }
-        else if (group == "player") {
-            this.parent.active = false;
+        else if (group == "player" || group == "blaster") {
+            this.death.kill();
         }
     }
 }

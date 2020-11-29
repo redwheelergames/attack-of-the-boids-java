@@ -14,7 +14,7 @@ class BlasterCollider extends Collider {
         }
         else if (group == "boid") {
             this.parent.active = false;
-            collider.parent.active = false;
+            collider.parent.getComponents(BoidDeath.class).get(0).kill();
         }
     }
 }
