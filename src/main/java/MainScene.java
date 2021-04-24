@@ -1,7 +1,6 @@
 import game_engine.*;
 import java.util.Random;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 class MainScene extends Scene {
 
@@ -47,7 +46,7 @@ class MainScene extends Scene {
         character.addComponent(playerCollider);
         this.addGameObject(character, "player");
 
-        int boidCount = 250;
+        int boidCount = 50;
         // Instatiate 10 Boid game objects
         for (int i = 0; i < boidCount; i++) {
             GameObject boid = new Boid(game, this, rng.nextInt(game.windowWidth), 

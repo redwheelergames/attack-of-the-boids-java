@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.io.File;
 import game_engine.*;
 
-class AttackOfTheBoids {
+public class AttackOfTheBoids {
 
     public static void main(String[] args) {
         Game game = new Game(1280, 720);

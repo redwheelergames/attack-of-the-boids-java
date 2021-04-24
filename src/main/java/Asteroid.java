@@ -1,5 +1,4 @@
 import game_engine.*;
-import java.io.File;
 
 class Asteroid extends GameObject {
 

@@ -1,5 +1,4 @@
 import game_engine.*;
-import java.util.ArrayList;
 
 class Boid extends GameObject {
 
