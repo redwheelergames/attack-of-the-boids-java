@@ -6,7 +6,8 @@ class MainScene extends Scene {
 
     public void load (Game game) {
 
-        this.reset();
+        //TODO Delete code
+//        this.reset();
 
         // Background game object
         GameObject background = new GameObject(game, this, true, game.windowWidth/2, game.windowHeight/2, 2, 2, 90);

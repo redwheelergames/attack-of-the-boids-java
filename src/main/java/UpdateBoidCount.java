@@ -17,7 +17,7 @@ class UpdateBoidCount implements Component {
     }
 
     public void update () {
-        int boidCount = this.parent.scene.getGroup("boid").size();
+        int boidCount = this.parent.game.sceneManager.getGroup("boid").size();
         this.boidCountText.textValue = "Boids Remaining: " + boidCount;
         if (boidCount <= 0) {
             this.winUI.active = true;

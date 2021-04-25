@@ -16,7 +16,7 @@ public class Avoidance extends BoidBehavior {
 
     public Vector2D getMove() {
         Vector2D boidPosition = this.parent.position;
-        ArrayList<GameObject> boids = this.parent.scene.getGroup("boid");
+        ArrayList<GameObject> boids = this.parent.game.sceneManager.getGroup("boid");
         Vector2D move = new Vector2D (0, 0);
         for (GameObject boid: boids) {
             Vector2D neighborPosition = boid.position;

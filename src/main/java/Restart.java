@@ -11,7 +11,7 @@ class Restart implements Component {
 
     public void update () {
         if (this.parent.game.wasReleased.getKey("space")) {
-            this.parent.game.changeScene("restart");
+            this.parent.game.sceneManager.nextScene = new MainScene();
         }
     }
 }

@@ -11,7 +11,7 @@ class Start implements Component {
 
     public void update () {
         if (this.game.wasReleased.getKey("space")) {
-            this.game.changeScene("start");
+            this.game.sceneManager.nextScene = new MainScene();
         }
     }
 }
