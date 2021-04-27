@@ -6,9 +6,6 @@ class MainScene extends Scene {
 
     public void load (Game game) {
 
-        //TODO Delete code
-//        this.reset();
-
         // Background game object
         GameObject background = new GameObject(game, this, true, game.windowWidth/2, game.windowHeight/2, 2, 2, 90);
         Sprite backgroundSprite = new Sprite(background, "background.png");
@@ -52,6 +49,7 @@ class MainScene extends Scene {
         for (int i = 0; i < boidCount; i++) {
             GameObject boid = new Boid(game, this, rng.nextInt(game.windowWidth), 
                                                 game.windowHeight + 10);
+            boid.getComponents(FollowPlayer.class).get(0).player = character;
             this.addGameObject(boid, "boid");
         }
         

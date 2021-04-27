@@ -5,12 +5,11 @@ public class FollowPlayer extends BoidBehavior {
     
     public double weight;
     public GameObject parent;
-    private GameObject player;
+    public GameObject player;
 
     public FollowPlayer (GameObject parent, double weight) {
         this.parent = parent;
         this.weight = weight;
-        this.player = this.parent.game.sceneManager.getGroup("player").get(0);
     }
 
     public Vector2D getMove() {
