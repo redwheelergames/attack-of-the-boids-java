@@ -30,6 +30,10 @@ class BoidCollider extends Collider {
         }
         else if (group == "player" || group == "blaster") {
             this.death.kill();
+            if (group == "player") {
+                // Deal one damage to the player
+                collider.parent.getComponents(Health.class).get(0).damage(1);
+            }
         }
     }
 }
