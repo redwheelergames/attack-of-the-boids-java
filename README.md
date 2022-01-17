@@ -1,6 +1,6 @@
 # attack-of-the-boids-java 
 
-Built with game_engine version: https://github.com/RedWheeler/game-engine/commit/3000cabd818884af65cc942d2b5e35bf493e9c21
+Built with game_engine [v1.1.1](https://github.com/redwheelergames/game-engine/releases/tag/v1.1.1).
 
 ### Building locally
 
