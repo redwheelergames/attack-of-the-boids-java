@@ -1,14 +1,13 @@
-import game_engine.Game;
-import game_engine.Component;
+import game_engine.Script;
+import game_engine.GameObject;
 
-class Start implements Component {
+class Start extends Script {
     
-    public Game game;
-    
-    public Start(Game game) {
-        this.game = game;
+    public Start(GameObject parent) {
+        super(parent);
     }
 
+    @Override
     public void update () {
         if (this.game.wasReleased.getKey("space")) {
             this.game.sceneManager.nextScene = new MainScene();

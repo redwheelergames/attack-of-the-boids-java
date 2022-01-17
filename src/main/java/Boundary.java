@@ -1,11 +1,10 @@
 import game_engine.GameObject;
-import game_engine.Component;
+import game_engine.Script;
 import game_engine.Vector2D;
 import game_engine.Collider;
 
-class Boundary implements Component {
+class Boundary extends Script {
 
-    public GameObject parent;
     public Collider collider;
     public int boundaryUpper;
     public int boundaryLower;
@@ -13,7 +12,7 @@ class Boundary implements Component {
     public int boundaryLeft;
 
     public Boundary (GameObject parent, Collider collider,  int boundaryLower, int boundaryUpper, int boundaryLeft, int boundaryRight) {
-        this.parent = parent;
+        super(parent);
         this.collider = collider;
         this.boundaryUpper = boundaryUpper;
         this.boundaryLower = boundaryLower;
@@ -21,21 +20,22 @@ class Boundary implements Component {
         this.boundaryRight = boundaryRight;
     }
 
+    @Override
     public void update () {
         int radius = collider.radius;
-        Vector2D position = this.parent.position;
+        Vector2D position = this.gameObject.transform.position;
         if (position.y + radius > boundaryUpper) {
-            this.parent.position.y = boundaryUpper - radius;
+            position.y = boundaryUpper - radius;
         }
         else if (position.y - radius < boundaryLower) {
-            this.parent.position.y = boundaryLower + radius;
+            position.y = boundaryLower + radius;
         }
 
         if (position.x + radius > boundaryRight) {
-            this.parent.position.x = boundaryRight - radius;
+            position.x = boundaryRight - radius;
         }
         else if (position.x - radius < boundaryLeft) {
-            this.parent.position.x = boundaryLeft + radius;
+            position.x = boundaryLeft + radius;
         }
     }
 

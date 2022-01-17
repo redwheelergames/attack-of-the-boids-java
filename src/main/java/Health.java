@@ -1,13 +1,12 @@
 import game_engine.Component;
 import game_engine.GameObject;
 
-class Health implements Component {
+class Health extends Component {
 
-    public GameObject parent;
     public int health;
 
     public Health (GameObject parent, int health) {
-        this.parent = parent;
+        super(parent);
         this.health = health;
     }
 
@@ -15,10 +14,8 @@ class Health implements Component {
     public int damage (int damage) {
         this.health -= damage;
         if (this.health <= 0) {
-            this.parent.active = false;
+            this.gameObject.active = false;
         }
         return this.health;
     }
-
-    public void update () {}
 }

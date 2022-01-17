@@ -1,19 +1,23 @@
-import game_engine.Component;
+import game_engine.Script;
 import game_engine.GameObject;
 import game_engine.Text;
 
-public class FPSCounter implements Component {
+public class FPSCounter extends Script {
 
-    public GameObject parent;
     public Text textComponent;
 
     public FPSCounter(GameObject parent) {
-        this.parent = parent;
-        this.textComponent = this.parent.getComponents(Text.class).get(0);
+        super(parent);
     }
 
+    @Override
+    public void onSceneLoad() {
+        this.textComponent = this.gameObject.getComponents(Text.class).get(0);
+    }
+
+    @Override
     public void update()  {
-        double deltaTime = this.parent.game.deltaTime;
+        double deltaTime = this.game.deltaTime;
         int fps = (int)(1 / deltaTime);
         this.textComponent.textValue = "FPS: " + Integer.toString(fps);
     }

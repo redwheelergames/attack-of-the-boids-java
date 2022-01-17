@@ -1,28 +1,28 @@
-import java.lang.Math;
 import java.util.LinkedList;
-import game_engine.*;
+import game_engine.GameObject;
+import game_engine.Script;
 
-class Shoot implements Component {
+class Shoot extends Script {
 
-    public GameObject parent;
     public float speed;
     private LinkedList<GameObject> ammo;
 
     public Shoot(GameObject parent) {
-        this.parent = parent;
+        super(parent);
         this.ammo = new LinkedList<GameObject> ();
         for (int i = 0; i < 10; i++) {
-            GameObject blaster = new Blaster(this.parent.game, this.parent.scene);
+            GameObject blaster = new Blaster(this.game);
             ammo.add(blaster);
-            this.parent.scene.addGameObject(blaster, "blaster");
+            this.game.sceneManager.addGameObject(blaster, "blaster");
         }
     }
 
+    @Override
     public void update() { 
-        if (this.parent.game.wasReleased.getKey("mouse1")) {
+        if (this.game.wasReleased.getKey("mouse1")) {
             GameObject blaster = this.ammo.pop();
-            blaster.rotation = this.parent.rotation;
-            blaster.position = this.parent.position;
+            blaster.transform.rotation = this.gameObject.transform.rotation;
+            blaster.transform.position = this.gameObject.transform.position;
             blaster.active = true;
             this.ammo.add(blaster);
         }      

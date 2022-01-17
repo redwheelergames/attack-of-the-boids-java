@@ -1,20 +1,19 @@
-import java.lang.Math;
 import game_engine.*;
 
-class MoveForward implements Component {
+class MoveForward extends Script {
 
-    public GameObject parent;
     public float speed;
 
     public MoveForward(GameObject parent, float speed) {
-        this.parent = parent;
+        super(parent);
         this.speed = speed;
     }
 
+    @Override
     public void update() { 
-        double deltaTime = this.parent.game.deltaTime;
-        Vector2D forward = this.parent.getForwardVector();
+        double deltaTime = this.game.deltaTime;
+        Vector2D forward = this.gameObject.transform.getForwardVector();
         Vector2D delta = forward.scale(this.speed * deltaTime);
-        this.parent.position = this.parent.position.add(delta);      
+        this.gameObject.transform.position = this.gameObject.transform.position.add(delta);      
     }
 }

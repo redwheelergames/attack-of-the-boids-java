@@ -1,17 +1,18 @@
 import game_engine.GameObject;
-import game_engine.Component;
+import game_engine.Script;
 
-class Restart implements Component {
+class Restart extends Script {
     
     public GameObject parent;
     
     public Restart(GameObject parent) {
-        this.parent = parent;
+        super(parent);
     }
 
+    @Override
     public void update () {
-        if (this.parent.game.wasReleased.getKey("space")) {
-            this.parent.game.sceneManager.nextScene = new MainScene();
+        if (this.game.wasReleased.getKey("space")) {
+            this.game.sceneManager.nextScene = new MainScene();
         }
     }
 }

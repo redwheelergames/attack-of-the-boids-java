@@ -1,36 +1,34 @@
 import java.lang.Math;
-import game_engine.*;
+import game_engine.GameObject;
+import game_engine.Script;
+import game_engine.Vector2D;
 
-class PlayerController implements Component {
+class PlayerController extends Script {
 
-    public GameObject parent;
     public float speed;
-    private GameObject ammo;
 
     public PlayerController(GameObject parent, float speed) {
-        this.parent = parent;
+        super(parent);
         this.speed = speed;
-        this.ammo = new Blaster(this.parent.game, this.parent.scene);
-        this.parent.scene.addGameObject(this.ammo);
     }
 
     public void update() { 
-        double deltaTime = this.parent.game.deltaTime;
-        if (this.parent.game.wasPressed.getKey("a")) {
-            this.parent.rotation +=  (int)Math.rint(360 * deltaTime);
+        double deltaTime = this.game.deltaTime;
+        if (this.game.wasPressed.getKey("a")) {
+            this.gameObject.transform.rotation +=  (int)Math.rint(360 * deltaTime);
         }
-        if (this.parent.game.wasPressed.getKey("d")) {
-            this.parent.rotation -= (int)Math.rint(360 * deltaTime);
+        if (this.game.wasPressed.getKey("d")) {
+            this.gameObject.transform.rotation -= (int)Math.rint(360 * deltaTime);
         }
-        if (this.parent.game.wasPressed.getKey("w")) {
-            Vector2D up = this.parent.getForwardVector();
+        if (this.game.wasPressed.getKey("w")) {
+            Vector2D up = this.gameObject.transform.getForwardVector();
             Vector2D delta = up.scale(this.speed * deltaTime);
-            this.parent.position = this.parent.position.add(delta);
+            this.gameObject.transform.position = this.gameObject.transform.position.add(delta);
         }
-        if (this.parent.game.wasPressed.getKey("s")) {
-            Vector2D down = this.parent.getForwardVector().scale(-1);
+        if (this.game.wasPressed.getKey("s")) {
+            Vector2D down = this.gameObject.transform.getForwardVector().scale(-1);
             Vector2D delta = down.scale(this.speed*3/4 * deltaTime);
-            this.parent.position = this.parent.position.add(delta);
+            this.gameObject.transform.position = this.gameObject.transform.position.add(delta);
         }        
     }
 }

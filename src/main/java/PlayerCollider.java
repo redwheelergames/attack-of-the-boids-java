@@ -6,13 +6,14 @@ class PlayerCollider extends Collider {
 
     public PlayerCollider (GameObject parent, int radius) {
         super(parent, radius);
-        this.playerHealth = this.parent.getComponents(Health.class).get(0);
+        this.playerHealth = this.gameObject.getComponents(Health.class).get(0);
     }
 
+    @Override
     public void onCollide(Collider collider, String group) {
         if (group == "environment") {
-            Vector2D thisPosition = this.parent.position;
-            Vector2D colliderPosition = collider.parent.position;
+            Vector2D thisPosition = this.gameObject.transform.position;
+            Vector2D colliderPosition = collider.gameObject.transform.position;
 
             Vector2D distanceVector = thisPosition.subtract(colliderPosition);
             double distance = distanceVector.magnitude();
@@ -20,7 +21,7 @@ class PlayerCollider extends Collider {
 
             double scaleFactor = (newDistance - distance)/distance; // determine how much the difference vector needs to be scaled by
             Vector2D translate = distanceVector.scale(scaleFactor);
-            this.parent.position = this.parent.position.add(translate);
+            this.gameObject.transform.position = this.gameObject.transform.position.add(translate);
         }
     }
 }
