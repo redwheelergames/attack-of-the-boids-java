@@ -4,18 +4,21 @@ import game_engine.GameObject;
 public class FollowPlayer extends BoidBehavior {
     
     public double weight;
-    public GameObject parent;
     private GameObject player;
 
     public FollowPlayer (GameObject parent, double weight) {
-        this.parent = parent;
+        super(parent);
         this.weight = weight;
-        this.player = this.parent.scene.getGroup("player").get(0);
+    }
+
+    @Override
+    public void onSceneLoad() {
+        this.player = this.game.sceneManager.getGroup("player").get(0);
     }
 
     public Vector2D getMove() {
-        Vector2D playerPosition = this.player.position;
-        Vector2D boidPosition = this.parent.position;
+        Vector2D playerPosition = this.player.transform.position;
+        Vector2D boidPosition = this.gameObject.transform.position;
         return (playerPosition.subtract(boidPosition).normalized());
     }
 

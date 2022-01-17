@@ -8,13 +8,14 @@ class BlasterCollider extends Collider {
         this.groups.add("environment");
     }
 
+    @Override
     public void onCollide(Collider collider, String group) {
         if (group == "environment") {
-            this.parent.active = false;
+            this.gameObject.active = false;
         }
         else if (group == "boid") {
-            this.parent.active = false;
-            collider.parent.getComponents(BoidDeath.class).get(0).kill();
+            this.gameObject.active = false;
+            collider.gameObject.getComponents(BoidDeath.class).get(0).kill();
         }
     }
 }
